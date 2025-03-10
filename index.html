@@ -1,140 +1,34 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food & Mood App</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
-        }
-        input, select, button {
-            padding: 10px;
-            margin: 10px;
-            width: 80%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #loading-message {
-            display: none;
-            font-weight: bold;
-            color: #ff5733;
-        }
-    </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>🍽️ Welcome to the Food & Mood App!</h1>
-        <p>We recommend recipes based on your **mood** and **available ingredients**! 🥗</p>
+        <h1>Welcome to the Food & Mood App!</h1>
+        <p>This app will recommend recipes based on your mood and available ingredients.</p>
 
-        <label for="mood">🌈 How do you feel today?</label>
+        <label for="mood">How do you feel today?</label>
         <select id="mood">
-            <option value="happy">😊 Happy</option>
-            <option value="sad">😢 Sad</option>
-            <option value="tired">😴 Tired</option>
-            <option value="energetic">💪 Energetic</option>
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+            <option value="tired">Tired</option>
+            <option value="energetic">Energetic</option>
         </select>
 
-        <label for="ingredients">🥦 Enter ingredients you have (comma separated):</label>
+        <label for="ingredients">Enter ingredients you have (comma separated):</label>
         <input type="text" id="ingredients" placeholder="e.g., wheat, dal, spinach">
 
-        <button id="get-recipes">🍳 Get Recipes</button>
+        <button id="get-recipes">Get Recipes</button>
         
-        <p id="loading-message">🔎 Finding the best recipes for you...</p>
+        <p id="loading-message">Finding the best recipes for you...</p>
 
         <div id="recipe-suggestions"></div>
     </div>
 
-    <script>
-        document.getElementById("get-recipes").addEventListener("click", function() {
-            let mood = document.getElementById("mood").value;
-            let ingredients = document.getElementById("ingredients").value.split(',').map(item => item.trim().toLowerCase());
-
-            document.getElementById("loading-message").style.display = "block";
-
-            setTimeout(function() {
-                document.getElementById("loading-message").style.display = "none";
-                let recipes = [];
-
-                // 🌟 SINGLE-INGREDIENT MATCHES
-                if (ingredients.includes("dal")) {
-                    recipes.push("🍲 **Dal Fry** - A simple and delicious dal dish.");
-                }
-                if (ingredients.includes("wheat")) {
-                    recipes.push("🌮 **Chapati** - A healthy wheat flatbread.");
-                }
-                if (ingredients.includes("rice")) {
-                    recipes.push("🍚 **Plain Rice** - Perfect with any curry.");
-                }
-
-                // 🍛 SAMBAR VARIETIES
-                if (ingredients.includes("dal") && ingredients.includes("curry leaves")) {
-                    recipes.push("🍛 **Curry Dal** - A flavorful South Indian dal dish.");
-                }
-                if (ingredients.includes("dal") && ingredients.includes("spinach")) {
-                    recipes.push("🥬 **Spinach Sambar** - A healthy South Indian dish!");
-                }
-                if (ingredients.includes("dal") && ingredients.includes("peas")) {
-                    recipes.push("🟢 **Peas Sambar** - A protein-rich sambar with fresh peas.");
-                }
-
-                // 🥞 DOSA
-                if (ingredients.includes("rice") && ingredients.includes("urad dal")) {
-                    recipes.push("🥞 **Dosa** - A crispy and tasty South Indian breakfast.");
-                }
-
-                // 🍅 TOMATO BATH
-                if (ingredients.includes("rice") && ingredients.includes("tomato") && ingredients.includes("spices")) {
-                    recipes.push("🍅 **Tomato Bath** - A delicious tomato rice dish.");
-                }
-
-                // 🌈 MOOD-BASED SUGGESTIONS (Now Only If Ingredients Match!)
-                if (mood === "happy" && (ingredients.includes("sugar") || ingredients.includes("jaggery") || ingredients.includes("milk"))) {
-                    recipes.push("😃 **Try a sweet dish like Payasam!**");
-                }
-                if (mood === "sad" && (ingredients.includes("dal") || ingredients.includes("wheat"))) {
-                    recipes.push("😢 **Comfort food: Dal Rice or Chapati with Ghee!**");
-                }
-                if (mood === "tired" && (ingredients.includes("lemon") || ingredients.includes("masala"))) {
-                    recipes.push("😴 **Energize with Masala Dosa or Lemon Rice!**");
-                }
-                if (mood === "energetic" && (ingredients.includes("paneer") || ingredients.includes("chickpeas"))) {
-                    recipes.push("💪 **Power Meal: Paneer Curry with Roti!**");
-                }
-
-                // 🎯 DEFAULT RESPONSE
-                if (recipes.length === 0) {
-                    recipes.push("⚠️ Try adding more ingredients or change your mood to get better suggestions.");
-                }
-
-                document.getElementById("recipe-suggestions").innerHTML = `
-                    <h3>🍽️ Recipe Suggestions:</h3>
-                    <ul>${recipes.map(recipe => `<li>${recipe}</li>`).join('')}</ul>
-                `;
-            }, 2000);
-        });
-    </script>
-
+    <!-- Link your app.js file -->
+    <script src="app.js"></script>
 </body>
 </html>

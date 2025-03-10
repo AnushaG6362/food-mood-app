@@ -1,18 +1,17 @@
 # Food & Mood App
 
-A cloud-based AI recipe recommender app that suggests recipes based on your mood and available ingredients.
+This app suggests recipes based on your mood and available ingredients.
 
 ## Features
-- Mood-based recipe suggestions
-- Ingredient-based filtering
-- Nutritional analysis
-- Personalized meal plans
-- Chatbot integration
+- Select your mood.
+- Enter ingredients you have in the kitchen.
+- Get recipe suggestions based on mood and ingredients.
 
-## Getting Started
-1. Clone the repository
-2. Install dependencies
-3. Run the app
+## How to Run
+1. Clone this repository.
+2. Open `index.html` in a browser.
+3. Enter ingredients and mood to get recipe suggestions.
 
-## License
-This project is licensed under the MIT License.
+## Future Improvements
+- Add a backend to suggest more complex recipes.
+- Provide nutritional analysis.

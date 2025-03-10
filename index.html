@@ -10,7 +10,82 @@
     <div class="container">
         <h1>Welcome to the Food & Mood App!</h1>
         <p>This app will recommend recipes based on your mood!</p>
-        <!-- Placeholder for Mood input and Recipe display -->
+        
+        <!-- Mood input section -->
+        <div>
+            <label for="mood">How do you feel today?</label>
+            <select id="mood" onchange="getRecipe()">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="energetic">Energetic</option>
+                <option value="tired">Tired</option>
+            </select>
+        </div>
+
+        <!-- Ingredient-based filtering section -->
+        <div>
+            <label for="ingredients">Enter ingredients you have (comma separated):</label>
+            <input type="text" id="ingredients" placeholder="e.g., chicken, rice, tomatoes">
+            <button onclick="filterRecipes()">Get Recipes</button>
+        </div>
+
+        <!-- Recipe suggestion area -->
+        <div id="recipe-suggestion"></div>
     </div>
+
+    <script>
+        // Mood-based recipe suggestion
+        function getRecipe() {
+            const mood = document.getElementById("mood").value;
+            let recipe = '';
+
+            switch (mood) {
+                case 'happy':
+                    recipe = 'Pasta Primavera';
+                    break;
+                case 'sad':
+                    recipe = 'Chocolate Cake';
+                    break;
+                case 'energetic':
+                    recipe = 'Energy Smoothie';
+                    break;
+                case 'tired':
+                    recipe = 'Soup and Sandwich';
+                    break;
+                default:
+                    recipe = 'Try something new!';
+            }
+
+            document.getElementById("recipe-suggestion").innerHTML = "We suggest: " + recipe;
+        }
+
+        // Example recipes for ingredient-based filtering
+        const recipes = [
+            { name: 'Chicken Curry', ingredients: ['chicken', 'curry powder', 'rice'] },
+            { name: 'Tomato Soup', ingredients: ['tomatoes', 'onion', 'garlic'] },
+            { name: 'Fried Rice', ingredients: ['rice', 'egg', 'carrot', 'soy sauce'] },
+            { name: 'Pasta Primavera', ingredients: ['pasta', 'tomatoes', 'garlic', 'olive oil'] }
+        ];
+
+        // Ingredient-based filtering
+        function filterRecipes() {
+            const userIngredients = document.getElementById("ingredients").value.toLowerCase().split(',').map(ingredient => ingredient.trim());
+            let matchedRecipes = [];
+
+            recipes.forEach(recipe => {
+                const recipeIngredients = recipe.ingredients.map(ingredient => ingredient.toLowerCase());
+                if (userIngredients.every(ingredient => recipeIngredients.includes(ingredient))) {
+                    matchedRecipes.push(recipe.name);
+                }
+            });
+
+            const resultDiv = document.getElementById("recipe-suggestion");
+            if (matchedRecipes.length > 0) {
+                resultDiv.innerHTML = "You can make: " + matchedRecipes.join(", ");
+            } else {
+                resultDiv.innerHTML = "No recipes found with those ingredients.";
+            }
+        }
+    </script>
 </body>
 </html>
